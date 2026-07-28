@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Syne, Manrope } from "next/font/google";
 import "./globals.css";
+import "../styles/effects.css";
 
 const display = Syne({
   variable: "--font-display",
@@ -23,7 +24,9 @@ export const metadata: Metadata = {
     description: "Plans & conception BTP — vitrine immersive",
     locale: "fr_FR",
     type: "website",
+    siteName: "Atelier Plans Offshore",
   },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
@@ -31,8 +34,26 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: "Atelier Plans Offshore",
+    description:
+      "Conception de plans BTP et offshore. 15 ans entreprise, 20 ans freelance, collaborations internationales.",
+    url: "https://atelier-plans-offshore.fr",
+    email: "contact@exemple-btp.fr",
+    areaServed: "FR",
+    knowsAbout: ["Plans BTP", "Plans offshore", "Plans d'exécution", "Plans de permis"],
+  };
+
   return (
     <html lang="fr" className={`${display.variable} ${body.variable} h-full antialiased`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="min-h-full">{children}</body>
     </html>
   );

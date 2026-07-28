@@ -1,0 +1,113 @@
+/* Grain texture overlay */
+.grain-overlay::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* Vignette */
+.vignette-overlay::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(10,18,24,0.5) 100%);
+}
+
+/* Sky animation */
+@keyframes sky-breath {
+  0%, 100% { background-color: var(--sky-dawn); }
+  50% { background-color: var(--sky-day); }
+}
+
+/* Loading screen */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink-deep);
+  transition: opacity 0.8s ease;
+}
+
+.loading-screen.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-bar {
+  width: 160px;
+  height: 2px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 1px;
+  overflow: hidden;
+  margin-top: 24px;
+}
+
+.loading-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.3s ease;
+  width: 0%;
+}
+
+/* Progress rail */
+.progress-rail {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.progress-rail-track {
+  width: 2px;
+  height: 180px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 1px;
+  position: relative;
+}
+
+.progress-rail-fill {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: var(--accent);
+  border-radius: 1px;
+  transition: height 0.1s linear;
+}
+
+.progress-rail-label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--mist);
+  writing-mode: vertical-rl;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+
+.progress-rail-label.active {
+  opacity: 1;
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-bar-fill {
+    transition: none;
+  }
+}

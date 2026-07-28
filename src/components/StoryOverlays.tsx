@@ -1,6 +1,6 @@
 "use client";
 
-import { scrollSections, experience, projects } from "@/data/content";
+import { scrollSections, experience, projects, trustSignals } from "@/data/content";
 
 type Props = {
   progress: number;
@@ -24,7 +24,7 @@ export function StoryOverlays({ progress }: Props) {
               className="absolute max-w-xl transition-transform duration-300"
               style={{
                 opacity: fade,
-                transform: `translateY(${(1 - fade) * 18}px)`,
+                transform: `translateY(${(1 - fade) * 18 + (1 - fade) * 20}px)`,
               }}
             >
               <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[var(--accent)]">Parcours</p>
@@ -61,6 +61,17 @@ export function StoryOverlays({ progress }: Props) {
                     </li>
                   ))}
                 </ul>
+              )}
+
+              {section.id === "offer" && fade > 0.35 && (
+                <div className="pointer-events-auto mt-6 flex flex-wrap gap-6">
+                  {trustSignals.map((signal) => (
+                    <div key={signal.label} className="border-l border-[var(--steel)] pl-3">
+                      <p className="font-display text-xl text-[var(--accent)]">{signal.label}</p>
+                      <p className="mt-1 text-xs text-[var(--mist)]">{signal.detail}</p>
+                    </div>
+                  ))}
+                </div>
               )}
             </div>
           );

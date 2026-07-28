@@ -5,9 +5,13 @@
   --ink-deep: #0a1218;
   --steel: #2f4a5e;
   --steel-bright: #3d617a;
+  --steel-glow: #4a7a96;
   --sand: #e8e0d4;
+  --sand-warm: #d4c9b8;
   --mist: #b7c2cb;
   --accent: #c4a35a;
+  --sky-dawn: #1a2a3a;
+  --sky-day: #2c4a5e;
   --background: var(--ink);
   --foreground: var(--sand);
 }

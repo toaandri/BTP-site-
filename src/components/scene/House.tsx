@@ -109,6 +109,36 @@ export function House({ doorOpen, opacity }: HouseProps) {
         <boxGeometry args={[1.6, 0.5, 0.7]} />
         <meshStandardMaterial color="#6a5a48" />
       </mesh>
+
+      {/* Balcon 1er étage */}
+      <mesh position={[0.8, 3.8, 3.05]}>
+        <boxGeometry args={[1.8, 0.08, 0.6]} />
+        <meshStandardMaterial color="#4a5560" roughness={0.7} />
+      </mesh>
+      <mesh position={[1.7, 3.5, 3.05]}>
+        <boxGeometry args={[0.06, 0.7, 0.6]} />
+        <meshStandardMaterial color="#4a5560" roughness={0.7} />
+      </mesh>
+      <mesh position={[-0.1, 3.5, 3.05]}>
+        <boxGeometry args={[0.06, 0.7, 0.6]} />
+        <meshStandardMaterial color="#4a5560" roughness={0.7} />
+      </mesh>
+
+      {/* Garage / annexe */}
+      <mesh position={[-2.4, 0.65, -2.8]}>
+        <boxGeometry args={[1.2, 1.3, 1.8]} />
+        <meshStandardMaterial color="#6b7c6a" roughness={0.85} />
+      </mesh>
+      <mesh position={[-2.4, 1.35, -2.8]}>
+        <boxGeometry args={[1.2, 0.04, 1.8]} />
+        <meshStandardMaterial color="#4a5560" roughness={0.7} />
+      </mesh>
+
+      {/* Fenêtre toit / velux */}
+      <mesh position={[0.8, 5.2, 0.8]} rotation={[0.3, 0, 0]}>
+        <boxGeometry args={[0.6, 0.06, 0.5]} />
+        <meshStandardMaterial color="#a8c4d4" transparent opacity={0.4} metalness={0.2} roughness={0.15} />
+      </mesh>
     </group>
   );
 }

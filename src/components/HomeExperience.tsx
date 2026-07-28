@@ -1,11 +1,15 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { useState } from "react";
 import { Header } from "@/components/Header";
 import { StoryOverlays } from "@/components/StoryOverlays";
 import { ContactSection } from "@/components/ContactSection";
-import { useScrollProgress } from "@/hooks/useScrollProgress";
-import { brand } from "@/data/content";
+import { SkipIntro } from "@/components/SkipIntro";
+import { useScrollProgress, scrollToContact } from "@/hooks/useScrollProgress";
+import { brand, progressLabels } from "@/data/content";
+import { ProgressBar } from "@/components/ui/ProgressBar";
+import { LoadingScreen } from "@/components/ui/LoadingScreen";
 
 const HouseCanvas = dynamic(
   () => import("@/components/scene/HouseCanvas").then((m) => m.HouseCanvas),
@@ -13,24 +17,46 @@ const HouseCanvas = dynamic(
 );
 
 export function HomeExperience() {
-  const { progress, reducedMotion } = useScrollProgress();
+  const { progress, reducedMotion, lowPerformance } = useScrollProgress();
+  const [canvasReady, setCanvasReady] = useState(false);
+  const [loadingDone, setLoadingDone] = useState(false);
+  const showLoading = !loadingDone && !reducedMotion;
   const canvasVisible = progress < 0.96 && !reducedMotion;
   const showHint = progress < 0.06;
+  const showSkip = progress > 0.1 && progress < 0.9;
+
+  const handleCanvasReady = () => {
+    setCanvasReady(true);
+  };
+
+  if (showLoading) {
+    return (
+      <>
+        <LoadingScreen onLoaded={() => setLoadingDone(true)} />
+        <div className="opacity-0 pointer-events-none" style={{ height: "520vh" }} />
+      </>
+    );
+  }
 
   return (
     <div id="top" className="relative">
       <Header />
 
-      {!reducedMotion && <HouseCanvas scrollProgress={progress} visible={canvasVisible} />}
+      {!reducedMotion && (
+        <HouseCanvas
+          scrollProgress={progress}
+          visible={canvasVisible}
+          onReady={handleCanvasReady}
+        />
+      )}
 
       {reducedMotion && (
         <div className="fixed inset-0 z-0 bg-[radial-gradient(ellipse_at_30%_20%,#243746_0%,#0f1c28_55%,#0a1218_100%)]" />
       )}
 
-      {/* Contenu fixe synchronisé au scroll */}
       <div className="pointer-events-none fixed inset-0 z-10 flex flex-col justify-end px-5 pb-20 pt-28 md:justify-center md:px-10 md:pb-10">
         <div
-          className="max-w-3xl transition-opacity duration-500"
+          className={`max-w-3xl transition-opacity duration-500 ${!canvasReady && !reducedMotion ? "opacity-0" : ""}`}
           style={{ opacity: progress < 0.1 ? 1 - progress * 6 : 0 }}
         >
           <p className="text-xs uppercase tracking-[0.24em] text-[var(--accent)]">
@@ -51,12 +77,23 @@ export function HomeExperience() {
         </p>
       )}
 
-      {/* Piste de scroll pour piloter la 3D */}
+      <SkipIntro visible={showSkip} />
+
+      {!lowPerformance && <ProgressBar sections={progressLabels} current={progress} />}
+
       <div className="relative z-[1] h-[520vh]" aria-hidden />
 
       <div className="relative z-20">
         <ContactSection />
       </div>
+
+      <button
+        type="button"
+        onClick={scrollToContact}
+        className="fixed bottom-0 inset-x-0 z-30 bg-[var(--steel)] py-3 text-sm font-medium text-[var(--sand)] transition hover:bg-[var(--steel-bright)] md:hidden"
+      >
+        Me contacter
+      </button>
     </div>
   );
 }

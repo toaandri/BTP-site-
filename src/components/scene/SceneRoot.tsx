@@ -5,6 +5,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { getSceneState, withAutoTour } from "@/lib/sceneTimeline";
 import { House } from "./House";
+import { BlueprintTransition } from "./BlueprintTransition";
 
 type Props = {
   scrollProgress: number;
@@ -40,5 +41,10 @@ export function SceneRoot({ scrollProgress }: Props) {
     camera.lookAt(look.current);
   });
 
-  return <House doorOpen={doorOpen} opacity={opacity} />;
+  return (
+    <>
+      <House doorOpen={doorOpen} opacity={opacity} />
+      <BlueprintTransition active={scrollProgress > 0.92} progress={scrollProgress} />
+    </>
+  );
 }

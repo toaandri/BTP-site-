@@ -5,7 +5,7 @@ import { scrollToContact } from "@/hooks/useScrollProgress";
 
 export function Header() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
+    <header className="fixed inset-x-0 top-0 z-50 transition-colors duration-300">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 md:px-8">
         <a href="#top" className="group flex items-baseline gap-2">
           <span className="font-display text-xl tracking-wide text-[var(--sand)] md:text-2xl">
@@ -17,10 +17,16 @@ export function Header() {
         </a>
         <nav className="flex items-center gap-3 md:gap-5">
           <a
-            href="#projets"
+            href="/projets"
             className="hidden text-sm text-[var(--mist)] transition hover:text-[var(--sand)] md:inline"
           >
             Projets
+          </a>
+          <a
+            href="/faq"
+            className="hidden text-sm text-[var(--mist)] transition hover:text-[var(--sand)] md:inline"
+          >
+            FAQ
           </a>
           <a
             href={contacts.linkedin}

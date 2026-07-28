@@ -67,3 +67,7 @@ test-results/
 .cache/
 .temp/
 tmp/
+
+# AI agent working files
+.opencode/
+docs/superpowers/

@@ -2,10 +2,12 @@
 
 import { useEffect, useState } from "react";
 
-/** Scroll progress 0→1 based on document scroll, with optional reduced-motion. */
 export function useScrollProgress() {
   const [progress, setProgress] = useState(0);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [lowPerformance] = useState(
+    () => typeof navigator !== "undefined" && navigator.hardwareConcurrency <= 4,
+  );
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -29,7 +31,7 @@ export function useScrollProgress() {
     };
   }, []);
 
-  return { progress, reducedMotion };
+  return { progress, reducedMotion, lowPerformance };
 }
 
 export function scrollToContact() {

@@ -38,6 +38,7 @@ export const projects = [
     type: "Plans d'exécution",
     year: "2024",
     summary: "Dossier complet : architecture, détails techniques et coordination corps d'état.",
+    category: "execution",
   },
   {
     id: "p2",
@@ -45,6 +46,7 @@ export const projects = [
     type: "Études",
     year: "2023",
     summary: "Études préliminaires et avant-projet pour un programme de bureaux.",
+    category: "permis",
   },
   {
     id: "p3",
@@ -52,6 +54,7 @@ export const projects = [
     type: "Plans permis",
     year: "2023",
     summary: "Plans de permis de construire et notice descriptive pour extension.",
+    category: "permis",
   },
   {
     id: "p4",
@@ -59,6 +62,7 @@ export const projects = [
     type: "Offshore",
     year: "2022",
     summary: "Production de plans techniques pour un partenaire industriel à l'étranger.",
+    category: "offshore",
   },
   {
     id: "p5",
@@ -66,6 +70,7 @@ export const projects = [
     type: "Relevé & plans",
     year: "2021",
     summary: "Relevé, plans existants et projet de réhabilitation partielle.",
+    category: "releve",
   },
   {
     id: "p6",
@@ -73,7 +78,16 @@ export const projects = [
     type: "VRD / massifs",
     year: "2020",
     summary: "Plans de masse et calepinage pour un ensemble de lots.",
+    category: "execution",
   },
+];
+
+export const projectCategories = [
+  { id: "all", label: "Tous" },
+  { id: "permis", label: "Permis" },
+  { id: "execution", label: "Exécution" },
+  { id: "offshore", label: "Offshore" },
+  { id: "releve", label: "Relevé" },
 ];
 
 export const scrollSections = [
@@ -107,4 +121,44 @@ export const scrollSections = [
     title: "Ce que je propose",
     body: "Plans architecturaux, techniques, d'exécution — adaptés à votre projet et votre contexte.",
   },
+];
+
+export const progressLabels = [
+  { id: "facade", label: "Façade", range: [0, 0.32] as const },
+  { id: "porte", label: "Porte", range: [0.32, 0.45] as const },
+  { id: "etage", label: "Étage", range: [0.45, 0.78] as const },
+  { id: "contact", label: "Contact", range: [0.78, 1] as const },
+];
+
+export const faq = [
+  {
+    q: "Quels types de plans réalisez-vous ?",
+    a: "Plans architecturaux, d'exécution, de permis de construire, de réhabilitation, relevés existants et plans techniques pour l'offshore.",
+  },
+  {
+    q: "Quels sont les délais moyens ?",
+    a: "Cela dépend de la complexité, mais un plan de permis se compte en semaines, un dossier d'exécution en mois. Je donne un délai précis après étude du besoin.",
+  },
+  {
+    q: "Intervenez-vous en France uniquement ?",
+    a: "Principalement France, mais je collabore aussi avec des entreprises étrangères pour des missions offshore et techniques.",
+  },
+  {
+    q: "Quels formats de livraison ?",
+    a: "PDF, DWG, DXF selon vos besoins. Formats standards du BTP et de l'architecture.",
+  },
+  {
+    q: "Comment établissez-vous un devis ?",
+    a: "Sur la base du descriptif du projet et des plans à produire. Devis gratuit, sans engagement.",
+  },
+  {
+    q: "Travaillez-vous en direct avec le client ou avec des bureaux d'études ?",
+    a: "Les deux : en direct avec les particuliers et promoteurs, ou en sous-traitance pour des bureaux d'études et agences d'architecture.",
+  },
+];
+
+export const trustSignals = [
+  { label: "France", detail: "Clients et partenaires en métropole et outre-mer" },
+  { label: "International", detail: "Collaborations avec des sociétés étrangères" },
+  { label: "35 ans", detail: "15 ans en entreprise + 20 ans en freelance" },
 ];
