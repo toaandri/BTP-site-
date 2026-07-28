@@ -1,11 +1,12 @@
 # BTP Site — Vitrine BTP Offshore
 
-Site vitrine Next.js pour une activité BTP / plans (offshore), audience principale France.
+Site vitrine Next.js avec expérience 3D scroll-driven (maison → zoom → porte → visite → contact).
 
 ## Stack
 
 - Next.js (App Router) + TypeScript + Tailwind CSS
-- Structure prête pour React Three Fiber / GSAP (expérience 3D scroll à venir)
+- React Three Fiber + Drei (scène 3D)
+- Scroll → timeline caméra (auto-tour après ouverture de porte)
 
 ## Démarrage
 
@@ -15,6 +16,10 @@ npm run dev
 ```
 
 Ouvrir [http://localhost:3000](http://localhost:3000).
+
+## Personnaliser
+
+Éditez `src/data/content.ts` : nom, contacts, projets, textes.
 
 ## Scripts
 
@@ -28,11 +33,9 @@ Ouvrir [http://localhost:3000](http://localhost:3000).
 ## Structure
 
 ```
-src/app/          Pages Next.js
-public/           Assets statiques
-scripts/          Utilitaires (ex. génération CDC)
+src/app/                 Pages (accueil, mentions légales)
+src/components/          UI + overlays + contact
+src/components/scene/    Maison 3D + canvas
+src/data/content.ts      Contenu éditable
+src/lib/sceneTimeline.ts Timeline caméra / porte
 ```
-
-## Notes
-
-Le cahier des charges Word est local et ignoré par git (`*.docx`).
