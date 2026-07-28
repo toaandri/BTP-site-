@@ -1,5 +1,7 @@
 # BTP Site — Vitrine BTP Offshore
 
+
+
 Site vitrine Next.js avec expérience 3D scroll-driven (maison → zoom → porte → visite → contact).
 
 ## Stack
